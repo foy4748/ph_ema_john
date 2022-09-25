@@ -1,0 +1,27 @@
+.card {
+  padding: 1rem 1rem 1rem;
+  border: 1px solid #95a0a7;
+  border-radius: 0.5rem;
+}
+
+.productInfo {
+  position: relative;
+}
+
+.cardFooter {
+  display: flex;
+  flex-flow: column;
+  justify-content: flex-end;
+  border: 1px solid red;
+}
+
+.imgFluid {
+  width: 100%;
+}
+
+.addToCartBtn {
+  margin: 0;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+}

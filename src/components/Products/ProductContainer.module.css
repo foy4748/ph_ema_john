@@ -1,0 +1,18 @@
+.productsContainer {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+}
+
+.productsContainer > *:first-child {
+  grid-column: span 9;
+}
+
+.productsContainer > *:last-child {
+  grid-column: span 3;
+}
+
+.products {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 0.5rem;
+}
