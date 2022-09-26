@@ -6,11 +6,19 @@ export default function OrderSummery({ cartItems }) {
 
   if (cartItems.length !== 0) {
     numberOfItems = <p> Added products: {cartItems.length} </p>;
+
+    //Calculating Cost from Props
     cartItems.reduce((acc, { price, shipping }) => {
       acc.price += price;
       acc.shippingCharge += shipping;
       return acc;
     }, costObj);
+  }
+
+  const _localItems = localStorage.getItem("shopping-cart");
+  if (_localItems.length > 1) {
+    const localItems = JSON.parse(_localItems);
+    console.log(localItems);
   }
 
   const { price, shippingCharge } = costObj;

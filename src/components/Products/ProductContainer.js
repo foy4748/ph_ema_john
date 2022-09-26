@@ -5,6 +5,8 @@ import styles from "./ProductContainer.module.css";
 import Products from "./Products";
 import OrderSummery from "./OrderSummery";
 
+import { addToDb } from "../../utilities/fakedb";
+
 export default function ProductContainer() {
   const [products, setProducts] = useState([]);
   const [cartItems, setCartItems] = useState([]);
@@ -27,8 +29,7 @@ export default function ProductContainer() {
       const item = products.find((product) => product.id === id);
       return [...prev, item];
     });
-
-    console.log(cartItems);
+    addToDb(id);
   };
 
   return (
