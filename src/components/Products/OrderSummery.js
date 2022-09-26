@@ -1,34 +1,21 @@
 import styles from "./OrderSummery.module.css";
 
-function shippingChargeCalculator(price) {
-  if (price <= 200) {
-    return (price * 2) / 100;
-  } else if (price <= 500) {
-    return (price * 5) / 100;
-  } else if (price <= 1000) {
-    return (price * 10) / 100;
-  } else if (price >= 1000) {
-    return (price * 15) / 100;
-  }
-}
-
 export default function OrderSummery({ cartItems }) {
-  let numberOfItems = 0,
-    price = 0,
-    tax = 0,
-    shippingCharge = 0,
-    grandTotal = 0;
+  let numberOfItems = "";
+  let costObj = { price: 0, tax: 0, shippingCharge: 0 };
 
   if (cartItems.length !== 0) {
     numberOfItems = <p> Added products: {cartItems.length} </p>;
-    price = cartItems.reduce((acc, curr) => {
-      return acc + curr.price;
-    }, 0);
-    tax = (price * 10) / 100;
-    shippingCharge = shippingChargeCalculator(price);
-
-    grandTotal = price + tax + shippingCharge;
+    cartItems.reduce((acc, { price, shipping }) => {
+      acc.price += price;
+      acc.shippingCharge += shipping;
+      return acc;
+    }, costObj);
   }
+
+  const { price, shippingCharge } = costObj;
+  const tax = (price * 10) / 100;
+  const grandTotal = price + shippingCharge + tax;
 
   return (
     <aside
