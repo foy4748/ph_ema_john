@@ -1,4 +1,6 @@
 import styles from "./Products.module.css";
+import { faCartPlus } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function Products({ addToCart, product }) {
   const { id, img, name, price, seller, ratings } = product;
@@ -21,9 +23,8 @@ export default function Products({ addToCart, product }) {
             }}
             type="button"
           >
-            {" "}
-            Add to cart{" "}
-          </button>{" "}
+            Add to cart <FontAwesomeIcon icon={faCartPlus} />
+          </button>
         </div>
       </div>
     </div>
