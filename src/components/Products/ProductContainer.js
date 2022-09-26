@@ -20,10 +20,11 @@ export default function ProductContainer() {
         const foundItems = [];
         for (let id in localItems) {
           const item = data.find((product) => product.id === id);
+          item.quantity = localItems[id];
           foundItems.push(item);
         }
-        setCartItems((prev) => {
-          return [...prev, ...foundItems];
+        setCartItems(() => {
+          return [...foundItems];
         });
       })
       .catch((error) => {
@@ -38,6 +39,7 @@ export default function ProductContainer() {
   const addToCart = (id) => {
     setCartItems((prev) => {
       const item = products.find((product) => product.id === id);
+      item.quantity = 1;
       return [...prev, item];
     });
     addToDb(id);

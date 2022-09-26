@@ -2,17 +2,17 @@ import styles from "./OrderSummery.module.css";
 
 export default function OrderSummery({ cartItems }) {
   let numberOfItems = "";
-  let costObj = { price: 0, tax: 0, shippingCharge: 0 };
+  let costObj = { price: 0, tax: 0, shippingCharge: 0, quantity: 0 };
 
   if (cartItems.length !== 0) {
-    numberOfItems = <p> Added products: {cartItems.length} </p>;
-
     //Calculating Cost from Props
-    cartItems.reduce((acc, { price, shipping }) => {
-      acc.price += price;
-      acc.shippingCharge += shipping;
+    cartItems.reduce((acc, { price, quantity, shipping }) => {
+      acc.price = acc.price + price * quantity;
+      acc.shippingCharge = acc.shippingCharge + shipping * quantity;
+      acc.quantity = acc.quantity + quantity;
       return acc;
     }, costObj);
+    numberOfItems = <p> Added products: {costObj.quantity} </p>;
   }
 
   const { price, shippingCharge } = costObj;
