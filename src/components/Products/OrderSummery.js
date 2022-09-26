@@ -15,12 +15,6 @@ export default function OrderSummery({ cartItems }) {
     }, costObj);
   }
 
-  const _localItems = localStorage.getItem("shopping-cart");
-  if (_localItems.length > 1) {
-    const localItems = JSON.parse(_localItems);
-    console.log(localItems);
-  }
-
   const { price, shippingCharge } = costObj;
   const tax = (price * 10) / 100;
   const grandTotal = price + shippingCharge + tax;

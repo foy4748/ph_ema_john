@@ -5,7 +5,7 @@ import styles from "./ProductContainer.module.css";
 import Products from "./Products";
 import OrderSummery from "./OrderSummery";
 
-import { addToDb } from "../../utilities/fakedb";
+import { addToDb, readFromDb } from "../../utilities/fakedb";
 
 export default function ProductContainer() {
   const [products, setProducts] = useState([]);
@@ -14,7 +14,18 @@ export default function ProductContainer() {
   useEffect(() => {
     fetch("./fakeData/products.json")
       .then((res) => res.json())
-      .then((data) => setProducts(data))
+      .then((data) => {
+        setProducts(data);
+        const localItems = readFromDb();
+        const foundItems = [];
+        for (let id in localItems) {
+          const item = data.find((product) => product.id === id);
+          foundItems.push(item);
+        }
+        setCartItems((prev) => {
+          return [...prev, ...foundItems];
+        });
+      })
       .catch((error) => {
         const errorObj = {
           error: true,

@@ -1,42 +1,43 @@
 // use local storage to manage cart data
-const addToDb = id =>{
-    let shoppingCart = {};
+const addToDb = (id) => {
+  let shoppingCart = readFromDb();
 
-    //get the shopping cart from local storage
-    const storedCart = localStorage.getItem('shopping-cart');
-    if(storedCart){
-        shoppingCart = JSON.parse(storedCart);
+  // add quantity
+  const quantity = shoppingCart[id];
+  if (quantity) {
+    const newQuantity = quantity + 1;
+    shoppingCart[id] = newQuantity;
+  } else {
+    shoppingCart[id] = 1;
+  }
+  localStorage.setItem("shopping-cart", JSON.stringify(shoppingCart));
+};
+
+const readFromDb = () => {
+  let localItems = {};
+
+  const _localItems = localStorage.getItem("shopping-cart");
+  if (_localItems && _localItems.length > 1) {
+    localItems = JSON.parse(_localItems);
+  }
+
+  return localItems;
+};
+
+const removeFromDb = (id) => {
+  const storedCart = localStorage.getItem("shopping-cart");
+  if (storedCart) {
+    const shoppingCart = JSON.parse(storedCart);
+    if (id in shoppingCart) {
+      delete shoppingCart[id];
+      localStorage.setItem("shopping-cart", JSON.stringify(shoppingCart));
     }
+  }
+};
 
-    // add quantity
-    const quantity = shoppingCart[id];
-    if(quantity){
-        const newQuantity = quantity + 1;
-        shoppingCart[id] = newQuantity;
-    }
-    else{
-        shoppingCart[id] = 1;
-    }
-    localStorage.setItem('shopping-cart', JSON.stringify(shoppingCart));
-}
+const deleteShoppingCart = () => {
+  localStorage.removeItem("shopping-cart");
+};
 
-const removeFromDb = id =>{
-    const storedCart = localStorage.getItem('shopping-cart');
-    if(storedCart){
-        const shoppingCart = JSON.parse(storedCart);
-        if(id in shoppingCart){
-            delete shoppingCart[id];
-            localStorage.setItem('shopping-cart', JSON.stringify(shoppingCart));
-        }
-    }
-}
+export { addToDb, readFromDb, removeFromDb, deleteShoppingCart };
 
-const deleteShoppingCart = () =>{
-    localStorage.removeItem('shopping-cart');
-}
-
-export {
-    addToDb, 
-    removeFromDb,
-    deleteShoppingCart
-}
