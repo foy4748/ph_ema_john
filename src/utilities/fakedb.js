@@ -37,7 +37,7 @@ const removeFromDb = (id) => {
 
 const deleteShoppingCart = () => {
   localStorage.removeItem("shopping-cart");
+  window.location.reload();
 };
 
 export { addToDb, readFromDb, removeFromDb, deleteShoppingCart };
-

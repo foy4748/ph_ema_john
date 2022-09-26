@@ -1,4 +1,5 @@
 import styles from "./OrderSummery.module.css";
+import { deleteShoppingCart } from "../../utilities/fakedb";
 
 export default function OrderSummery({ cartItems }) {
   let numberOfItems = "";
@@ -29,6 +30,11 @@ export default function OrderSummery({ cartItems }) {
           <p>Shipping Charge: {shippingCharge.toFixed(2)}</p>
           <p>Tax: {tax.toFixed(2)}</p>
           <p>Grand Total: {grandTotal.toFixed(2)}</p>
+        </div>
+        <div>
+          <button onClick={deleteShoppingCart} type="button">
+            Clear Cart
+          </button>
         </div>
       </div>
     </aside>
