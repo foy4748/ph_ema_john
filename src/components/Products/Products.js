@@ -16,16 +16,16 @@ export default function Products({ addToCart, product }) {
           <p>Manufacturar: {seller}</p>
           <p>Ratings: {ratings}</p>
         </div>
-        <div className={styles.addToCartBtn}>
-          <button
-            onClick={() => {
-              addToCart(id);
-            }}
-            type="button"
-          >
-            Add to cart <FontAwesomeIcon icon={faCartPlus} />
-          </button>
-        </div>
+      </div>
+      <div className={styles.addToCartBtn}>
+        <button
+          onClick={() => {
+            addToCart(id);
+          }}
+          type="button"
+        >
+          Add to cart <FontAwesomeIcon icon={faCartPlus} />
+        </button>
       </div>
     </div>
   );

@@ -1,27 +1,40 @@
 .card {
-  padding: 1rem 1rem 1rem;
   border: 1px solid #95a0a7;
   border-radius: 0.5rem;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+}
+
+.card p {
+  margin: 0;
+  padding: 0;
 }
 
 .productInfo {
   position: relative;
-}
-
-.cardFooter {
   display: flex;
-  flex-flow: column;
-  justify-content: flex-end;
-  border: 1px solid red;
+  flex-flow: column wrap;
+  justify-content: space-between;
+  padding: 0.5rem 0.5rem 0.5rem;
 }
 
 .imgFluid {
+  box-sizing: border-box;
   width: 100%;
+  padding: 0.5rem 0.5rem 0.5rem;
 }
 
-.addToCartBtn {
-  margin: 0;
+.addToCartBtn > button {
   width: 100%;
-  position: absolute;
-  bottom: 0;
+  border: none;
+  border-radius: 0 0 0.5rem 0.5rem;
+  padding: 0.5rem;
+  background-color: var(--orange-50);
+}
+
+.addToCartBtn > button:hover {
+  cursor: pointer;
+  color: #fff;
+  background-color: var(--orange10);
 }

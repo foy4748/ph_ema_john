@@ -18,14 +18,8 @@ export default function OrderSummery({ cartItems }) {
   const grandTotal = price + shippingCharge + tax;
 
   return (
-    <aside
-      style={{
-        padding: "0 1rem",
-        border: "1px solid red",
-        position: "relative",
-      }}
-    >
-      <div style={{ position: "sticky", top: "1rem" }}>
+    <aside className={styles.orderSummeryContainer}>
+      <div className={styles.orderSummery}>
         <h1 className={styles.title}>Order Summery</h1>
         <div>{numberOfItems}</div>
         <div className="summary">

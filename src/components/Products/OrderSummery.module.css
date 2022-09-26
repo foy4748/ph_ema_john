@@ -1,3 +1,13 @@
+.orderSummeryContainer {
+  padding: 0 1rem;
+  position: relative;
+  background-color: var(--orange-50);
+}
+
+.orderSummery {
+  position: sticky;
+  top: 1rem;
+}
 .title {
   text-align: center;
 }
