@@ -1,0 +1,12 @@
+.title {
+  text-align: center;
+}
+
+.orderSummery {
+  grid-column: auto / -1;
+}
+
+.orderContent {
+  position: sticky;
+  top: 1rem;
+}

@@ -1,0 +1,25 @@
+.imgFluid {
+  width: 100%;
+}
+
+.mealItem {
+  grid-column: span 4;
+  border: 1px solid black;
+}
+
+.info {
+  padding: 1rem;
+}
+
+.cartBtn {
+  display: flex;
+  justify-content: center;
+}
+
+.flexItem {
+  flex: 1;
+  border: none;
+  background-color: slateblue;
+  color: white;
+  padding: 0.5rem 0;
+}
