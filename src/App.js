@@ -1,18 +1,28 @@
 //import logo from './logo.svg';
 
 import "./App.css";
-import Navbar from "./components/Navbar";
-//import ProductContainer from "./components/Products/ProductContainer";
-import MealsContainer from "./components/Meals/MealsContainer";
+import ProductContainer from "./components/Products/ProductContainer";
+import MainLayout from "./components/MainLayout";
+
+//import MealsContainer from "./components/Meals/MealsContainer";
+//import Navbar from "./components/Navbar";
+
+//Importing Router packages
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
   return (
     <div>
-      <Navbar></Navbar>
-      <MealsContainer></MealsContainer>
+      <Router>
+        <Routes>
+          <Route path="/" element={<MainLayout />}>
+            <Route index element={<ProductContainer />} />
+          </Route>
+        </Routes>
+      </Router>
     </div>
   );
-  //<ProductContainer></ProductContainer>
 }
 
 export default App;
+//<MealsContainer></MealsContainer>

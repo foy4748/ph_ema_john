@@ -8,7 +8,7 @@ export default function Navbar() {
       </div>
       <ul className={styles.navItemContainer}>
         <li>
-          <a href="/order">Order</a>
+          <a href="/orders">Orders</a>
         </li>
         <li>
           <a href="/order-review">Order Review</a>
