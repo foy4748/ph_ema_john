@@ -37,12 +37,21 @@ export default function ProductContainer() {
   }, []);
 
   const addToCart = (id) => {
-    setCartItems((prev) => {
-      const item = products.find((product) => product.id === id);
-      item.quantity = 1;
-      return [...prev, item];
-    });
     addToDb(id);
+    const item = products.find((product) => product.id === id);
+    const foundItem = cartItems.find((itm) => itm.id === item.id);
+    if (foundItem) {
+      foundItem.quantity = foundItem.quantity + 1;
+      const newSets = cartItems.filter((itm) => itm.id !== foundItem.id);
+      const newCart = [...newSets, foundItem];
+      console.table(newCart);
+      setCartItems(newCart);
+    } else {
+      item.quantity = 1;
+      setCartItems((prev) => {
+        return [...prev, item];
+      });
+    }
   };
 
   return (

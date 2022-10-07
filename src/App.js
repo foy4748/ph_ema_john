@@ -3,6 +3,7 @@
 import "./App.css";
 import ProductContainer from "./components/Products/ProductContainer";
 import MainLayout from "./components/MainLayout";
+import Orders from "./components/Orders";
 import About from "./components/About";
 
 //import MealsContainer from "./components/Meals/MealsContainer";
@@ -18,6 +19,7 @@ function App() {
         <Routes>
           <Route path="/" element={<MainLayout />}>
             <Route index element={<ProductContainer />} />
+            <Route path="orders" element={<Orders />} />
             <Route path="about" element={<About />} />
           </Route>
         </Routes>
