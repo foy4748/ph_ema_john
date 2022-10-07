@@ -1,6 +1,10 @@
 import styles from "./Navbar.module.css";
+import { NavLink } from "react-router-dom";
 
 export default function Navbar() {
+  const styleActive = {
+    color: "var(--orange40)",
+  };
   return (
     <nav className={styles.navbarContainer}>
       <div>
@@ -8,16 +12,45 @@ export default function Navbar() {
       </div>
       <ul className={styles.navItemContainer}>
         <li>
-          <a href="/orders">Orders</a>
+          <NavLink
+            to="/"
+            style={({ isActive }) =>
+              isActive ? styleActive : { color: "white" }
+            }
+            end
+          >
+            Shop
+          </NavLink>
         </li>
         <li>
-          <a href="/order-review">Order Review</a>
+          <NavLink
+            to="/orders"
+            style={({ isActive }) =>
+              isActive ? styleActive : { color: "white" }
+            }
+          >
+            Orders
+          </NavLink>
         </li>
         <li>
-          <a href="/inventory">Manage Inventory</a>
+          <NavLink
+            to="/inventory"
+            style={({ isActive }) =>
+              isActive ? styleActive : { color: "white" }
+            }
+          >
+            Inventory
+          </NavLink>
         </li>
         <li>
-          <a href="/login">Login</a>
+          <NavLink
+            to="/about"
+            style={({ isActive }) =>
+              isActive ? styleActive : { color: "white" }
+            }
+          >
+            About
+          </NavLink>
         </li>
       </ul>
     </nav>

@@ -9,3 +9,7 @@
   --orange40: #995c00;
   --orange70: #4c2e00;
 }
+
+.activated {
+  color: black;
+}

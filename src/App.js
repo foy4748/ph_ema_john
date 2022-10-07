@@ -3,6 +3,7 @@
 import "./App.css";
 import ProductContainer from "./components/Products/ProductContainer";
 import MainLayout from "./components/MainLayout";
+import About from "./components/About";
 
 //import MealsContainer from "./components/Meals/MealsContainer";
 //import Navbar from "./components/Navbar";
@@ -17,6 +18,7 @@ function App() {
         <Routes>
           <Route path="/" element={<MainLayout />}>
             <Route index element={<ProductContainer />} />
+            <Route path="about" element={<About />} />
           </Route>
         </Routes>
       </Router>
