@@ -21,10 +21,13 @@ export default function Orders() {
           margin: "0 auto",
         }}
       >
-        {cartItems.map((item) => {
-          const { name, quantity, price, shipping, img } = item;
+        {cartItems.map((item, idx) => {
+          const { name, quantity, price, shipping, img, id } = item;
           return (
-            <div style={{ display: "flex", border: "1px solid red" }}>
+            <div
+              style={{ display: "flex", border: "1px solid red" }}
+              key={`${id}${idx}`}
+            >
               <img src={img} alt={name} style={{ width: "50%" }} />
               <div>
                 <p>{name}</p>

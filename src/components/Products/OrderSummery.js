@@ -1,5 +1,6 @@
 import styles from "./OrderSummery.module.css";
 import { deleteShoppingCart } from "../../utilities/fakedb";
+import { Link } from "react-router-dom";
 
 export default function OrderSummery({ cartItems }) {
   let numberOfItems = "";
@@ -35,6 +36,9 @@ export default function OrderSummery({ cartItems }) {
           <button onClick={deleteShoppingCart} type="button">
             Clear Cart
           </button>
+          <Link to="/orders">
+            <button>Checkout Orders</button>
+          </Link>
         </div>
       </div>
     </aside>
