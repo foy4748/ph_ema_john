@@ -1,10 +1,49 @@
 import styles from "./Navbar.module.css";
 import { NavLink } from "react-router-dom";
+import { useContext } from "react";
+import { userContext } from "../App";
 
 export default function Navbar() {
   const styleActive = {
     color: "var(--orange40)",
   };
+
+  const { activeUser, logOutHandler } = useContext(userContext);
+
+  const handleLogOut = () => {
+    logOutHandler().then(() => {
+      //setActiveUser(null);
+      window.location.href = "/";
+    });
+  };
+
+  //Nav Items
+  const registerNavItem = (
+    <li>
+      <NavLink
+        to="/register"
+        style={({ isActive }) => (isActive ? styleActive : { color: "white" })}
+      >
+        Register
+      </NavLink>
+    </li>
+  );
+  const loginNavItem = (
+    <li>
+      <NavLink
+        to="/login"
+        style={({ isActive }) => (isActive ? styleActive : { color: "white" })}
+      >
+        Login
+      </NavLink>
+    </li>
+  );
+  const logoutNavItem = (
+    <li onClick={handleLogOut}>
+      <NavLink to="/">Logout</NavLink>
+    </li>
+  );
+
   return (
     <nav className={styles.navbarContainer}>
       <div>
@@ -52,6 +91,8 @@ export default function Navbar() {
             About
           </NavLink>
         </li>
+        {activeUser?.uid ? "" : registerNavItem}
+        {activeUser?.uid ? logoutNavItem : loginNavItem}
       </ul>
     </nav>
   );
