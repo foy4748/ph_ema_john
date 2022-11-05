@@ -3,7 +3,7 @@ import { faCartPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function Products({ addToCart, product }) {
-  const { id, img, name, price, seller, ratings } = product;
+  const { _id, img, name, price, seller, ratings } = product;
   return (
     <div className={styles.card}>
       <img src={img} alt={name} className={styles.imgFluid} />
@@ -20,7 +20,7 @@ export default function Products({ addToCart, product }) {
       <div className={styles.addToCartBtn}>
         <button
           onClick={() => {
-            addToCart(id);
+            addToCart(_id);
           }}
           type="button"
         >

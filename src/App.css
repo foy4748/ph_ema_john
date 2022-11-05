@@ -13,3 +13,8 @@
 .activated {
   color: black;
 }
+
+.active {
+  background-color: var(--orange10);
+  color: var(--blue40);
+}

@@ -17,3 +17,23 @@
   grid-gap: 0.5rem;
   margin: 2rem;
 }
+
+.pageButton {
+  padding: 1rem;
+  border-radius: 0.5rem;
+}
+
+.pageButton:first-child {
+  border-radius: 0.5rem 0 0 0.5rem;
+}
+
+.pageButton:last-child {
+  border-radius: 0 0.5rem 0.5rem 0;
+}
+.paginationBar {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border: 1px solid red;
+  max-height: 4rem;
+}
