@@ -30,17 +30,38 @@ export default function ProductContainer() {
         setProducts(data.products);
         const localItems = readFromDb();
         const foundItems = [];
+        // Gotta Get Product informations from DB
+        /*
         for (let _id in localItems) {
           const item = data.products.find((product) => product._id === _id);
-          console.log("Found", item);
           if (item) {
             item.quantity = localItems[_id];
             foundItems.push(item);
           }
         }
-        setCartItems(() => {
-          return [...foundItems];
-        });
+		*/
+        const query = Object.keys(localItems);
+        fetch(`${SERVER}/product-query`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ query }),
+        })
+          .then((res) => res.json())
+          .then(({ error, products }) => {
+            if (!error) {
+              for (let _id in localItems) {
+                const item = products.find((product) => product._id === _id);
+                if (item) {
+                  item.quantity = localItems[_id];
+                  foundItems.push(item);
+                }
+              }
+              const items = [...foundItems];
+              setCartItems(items);
+            }
+          });
       })
       .catch((error) => {
         const errorObj = {
@@ -51,12 +72,11 @@ export default function ProductContainer() {
       });
   }, [page, size]);
 
-  console.log(products);
-
   const addToCart = (id) => {
     addToDb(id);
-    const item = products.find((product) => product.id === id);
-    const foundItem = cartItems.find((itm) => itm.id === item.id);
+    const item = products.find((product) => product._id === id);
+    const foundItem = cartItems.find((itm) => itm.id === item._id);
+    console.log(item);
     if (foundItem) {
       foundItem.quantity = foundItem.quantity + 1;
       const newSets = cartItems.filter((itm) => itm.id !== foundItem.id);
@@ -65,9 +85,8 @@ export default function ProductContainer() {
       setCartItems(newCart);
     } else {
       item.quantity = 1;
-      setCartItems((prev) => {
-        return [...prev, item];
-      });
+      const newCart = [...cartItems, item];
+      setCartItems(newCart);
     }
   };
 
@@ -79,7 +98,7 @@ export default function ProductContainer() {
     <section className={styles.productsContainer}>
       <aside className={styles.products}>
         {products.map((product) => (
-          <Products key={product.id} addToCart={addToCart} product={product} />
+          <Products key={product._id} addToCart={addToCart} product={product} />
         ))}
         <div className={styles.paginationBar}>
           {emptyArray.map((num) => {
