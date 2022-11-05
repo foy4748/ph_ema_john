@@ -23,6 +23,7 @@ export default function ProductContainer() {
   const emptyArray = Array.from(Array(pages).keys());
 
   useEffect(() => {
+    setProducts([]);
     fetch(`${SERVER}/products?p=${page}&s=${size}`)
       .then((res) => res.json())
       .then((data) => {
@@ -90,7 +91,7 @@ export default function ProductContainer() {
     }
   };
 
-  if (!products || !products.length) {
+  if (!products || products.length < 1) {
     return <Loader />;
   }
 
@@ -107,7 +108,7 @@ export default function ProductContainer() {
                 key={num}
                 onClick={() => setPage(num)}
                 className={`${styles.pageButton} ${
-                  +num === +page ? "active" : ""
+                  +num === +page ? "active-page" : ""
                 }`}
               >
                 {num + 1}

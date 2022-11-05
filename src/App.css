@@ -14,7 +14,7 @@
   color: black;
 }
 
-.active {
+.active-page {
   background-color: var(--orange10);
   color: var(--blue40);
 }
